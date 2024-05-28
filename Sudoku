@@ -1,0 +1,155 @@
+package trabalhos;
+import java.util.Random;
+import java.util.Arrays;
+import java.util.Collections;
+import java.io.Console;
+
+
+public class Sudoku {
+
+	// soma dos números de matriz, linha ou coluna = 45
+	
+	public static int[][] preencherJogo(){	
+	
+		
+		int[][] matrizes = new int[9][9];
+		int i,j;
+		int contador = 1;
+		int indexAux;
+		int numAux;
+		
+	
+		
+		Random numeros = new Random();		
+		
+		
+		for(i = 0; i < matrizes.length; i++) {
+			
+			
+			for(j = 0; j < matrizes[i].length; j++) {
+				
+				matrizes[i][j] = contador;
+				contador++;
+				
+			}
+			contador = 1;
+		}
+
+		
+		
+
+		for(i = 0; i < matrizes.length; i++) {
+			
+			
+			for(j = 0; j < matrizes[i].length; j++) {
+				
+				
+				
+				indexAux = numeros.nextInt(matrizes[i].length);
+				
+				numAux = matrizes[i][indexAux];
+				matrizes[i][indexAux] = matrizes[i][j];
+				matrizes[i][j] = numAux;
+				
+			}
+			
+		}
+		
+
+		
+	
+		
+		return matrizes;
+	}
+	
+	
+	public static int[][] regularizarJogo(int [][] matrizes){
+		
+		Random numeros = new Random();
+		int contador = 0;
+		int i,j, l, c;
+		int [][] matrizesClone = matrizes;
+		
+		
+		
+		for(i = 0; i < matrizes.length;i++) {
+			
+			for(j = 0; j < matrizes[i].length; j++) {
+				
+				for(l = 0; l  < matrizesClone.length; l++) {
+					
+					for(c = 0; c < matrizesClone[l].length; c++) {
+						
+						
+							
+							if(matrizes[i][j] == matrizesClone[l][c]) {
+								matrizes[i][j] = 0;
+								
+							
+						}
+						
+					}
+					
+				}
+				
+				
+			}
+			
+		}
+
+		
+		
+		
+		return matrizes;
+	}
+	
+	
+	
+	public static void main(String[] args) {
+		
+		int[][] matrizes = new int[9][9];
+		int[][] matrizesClone = new int[9][9];
+		matrizes = preencherJogo();
+		
+		int i,j;
+
+for(i = 0; i < matrizes.length; i++) {
+			
+			
+			for(j = 0; j < matrizes[i].length; j++) {
+				
+				
+				System.out.printf("  %d  ", matrizes[i][j]);
+				
+			}
+			
+			System.out.println();
+			
+		}
+System.out.println();
+
+matrizesClone = regularizarJogo(matrizes);
+		
+for(i = 0; i < matrizesClone.length; i++) {
+	
+	
+	for(j = 0; j < matrizesClone[i].length; j++) {
+		
+		
+		System.out.printf("  %d  ", matrizesClone[i][j]);
+		
+	}
+	
+	System.out.println();
+	
+}
+
+
+
+
+	}
+	
+	
+	
+
+}
